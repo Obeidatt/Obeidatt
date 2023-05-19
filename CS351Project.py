@@ -4,6 +4,7 @@ class QuickSort_RP:
     def __init__(self, arr):
         self.arr = arr
         self.NumberOfSwaps = 0
+        self.len = len(self.arr)
 
     def partition(self, low, high):
         pivot_index = random.randint(low, high)  # Randomly choose pivot index
@@ -35,6 +36,7 @@ class QuickSort_RP:
             pivot_index = self.partition(low, high)  # Partition the array
             self.quick_sort(low, pivot_index - 1)  # Sort the left subarray
             self.quick_sort(pivot_index + 1, high)  # Sort the right subarray
+        return self.arr
 
     def sort(self):
         self.swap_count = 0  # Reset swap count
@@ -153,31 +155,26 @@ class QuickSort_EP(QuickSort_RP):
 '''Decreasing Order'''
 # array =  [i for i in range(2000,0,-1)]
 '''Increasing Order'''
-array = [i for i in range(1000)]
+# array = [i for i in range(2000)]
 '''Random Order'''
-# array = [random.randint(1, 3000) for _ in range(3000)]
+array = [random.randint(1, 2000) for _ in range(2000)]
 
 
+'''Calling First element as pivot'''
 
-# to use class QuickSort random pivot 
-# qs = QuickSort_RP(array)
-# numberofswaps = qs.sort()
-# qs.Visulization()
-# print(qs.arr)
-# print()
-# print()
-# print('The number of swaps is ' , numberofswaps)
+qss = QuickSort_StartP()
+print(qss.quick_sort(array, 0, len(array)-1))   
+print(qss.NumberOfSwaps)
 
-# to use class QuickSort , pivot element is the first element in array 
-qs = QuickSort_StartP()
-print(qs.quick_sort(array, 0, len(array)-1))
-print(qs.NumberOfSwaps)
-qs.Visualization()
-# to use class QuickSort , pivot element is the last element in array
-# quicksort = QuickSort_EP()
-# sorted_arr = quicksort.sort(array)
-# num_swaps = quicksort.get_swaps()
 
-# print("Sorted array:", sorted_arr)
-# print("Number of swaps:", num_swaps)
+"""Calling Last element as pivot"""
 
+# qs = QuickSort_EP()
+# print(qs.sort(array))
+# print(qs.get_swaps())
+
+"""Calling Random pivot"""
+
+# qsss = QuickSort_RP(array)
+# print(qsss.quick_sort(0, qsss.len-1))
+# print(qsss.NumberOfSwaps)
